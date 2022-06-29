@@ -1,0 +1,25 @@
+{
+  "text": "《站在草原望北京》作词：邱国栋作曲：张天赋 演唱：乌兰图雅",
+  "spo_list": [
+    {
+      "subject_id": 1,
+      "object_id" : 3,
+      "predicate": "作曲"}
+  ],
+  "entities": [
+    {
+      "start_idx": 1,
+      "end_idx": 7,
+      "type": "歌曲",
+      "entities": "站在草原望北京",
+      "id": 1
+    },
+    {
+      "start_idx": 18,
+      "end_idx": 20,
+      "type": "人物",
+      "entities": "张天赋",
+      "id": 3
+    }
+  ]
+}

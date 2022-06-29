@@ -1,0 +1,60 @@
+{
+  "text": "1、双侧乳腺组织增生。2、右侧乳腺低回声结节,BI-RADS3类;建议定期复查。3、双侧腋下未见明显肿大淋巴结。",
+  "spo_list": [
+    {
+      "predicate": "增生_表现",
+      "object_type": {
+        "@value": "乳腺组织改变"
+      },
+      "subject_type": "增生腺体",
+      "object": {
+        "@value": "增生"
+      },
+      "subject": "乳腺组织"
+    },
+    {
+      "predicate": "病灶_侧别",
+      "object_type": {
+        "@value": "侧别"
+      },
+      "subject_type": "病灶",
+      "object": {
+        "@value": "右侧"
+      },
+      "subject": "乳腺组织"
+    },
+    {
+      "predicate": "病灶_回声强度",
+      "object_type": {
+        "@value": "回声强度"
+      },
+      "subject_type": "病灶",
+      "object": {
+        "@value": "低回声"
+      },
+      "subject": "乳腺组织"
+    },
+    {
+      "predicate": "病灶_评估分类",
+      "object_type": {
+        "@value": "BI-RADS分类_超声"
+      },
+      "subject_type": "病灶",
+      "object": {
+        "@value": "BI-RADS3类"
+      },
+      "subject": "乳腺组织"
+    },
+    {
+      "predicate": "腋窝_淋巴结表现",
+      "object_type": {
+        "@value": "淋巴结表现"
+      },
+      "subject_type": "腋窝",
+      "object": {
+        "@value": "未见明显肿大淋巴结"
+      },
+      "subject": "腋下"
+    }
+  ]
+}
