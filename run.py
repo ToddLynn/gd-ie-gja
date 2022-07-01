@@ -152,7 +152,8 @@ def evaluate(args, eval_iter, model, mode):
 
     if mode == "eval":
         # precision, recall, f1 = get_precision_recall_f1("./data/kt_train_460.json", predict_file_path)
-        precision, recall, f1 = get_precision_recall_f1("./data/kt_dev_196.json", predict_file_path)
+        # precision, recall, f1 = get_precision_recall_f1("./data/kt_dev_196.json", predict_file_path)
+        precision, recall, f1 = get_precision_recall_f1("data/data_dev.json", predict_file_path)
         return precision, recall, f1
     elif mode != "test":
         raise Exception("wrong mode for eval func")
@@ -193,10 +194,12 @@ def main():
     train_dataset = DuIEDataset(args,
                                 # json_path="data/duie_train_4000.json",
                                 # json_path="data/duie_train.json",
-                                json_path="data/kt_train_460.json",
+                                # json_path="data/kt_train_460.json",
+                                json_path="data/data_train.json",
                                 tokenizer=tokenizer)
     eval_dataset = DuIEDataset(args,
-                               json_path="data/kt_dev_196.json",
+                               json_path="data/data_dev.json",
+                               # json_path="data/kt_dev_196.json",
                                # json_path="data/kt_train_460.json",
                                tokenizer=tokenizer)
     # eval_dataset, test_dataset = random_split(eval_dataset,0
@@ -239,25 +242,25 @@ def main():
         model.train()
         train(args, train_iter, model)
         # 每轮epoch在验证集上计算分数
-        if epoch > 2:
-            eval_precision, eval_recall, eval_f1 = evaluate(args, eval_iter, model, mode="eval")
-            print("precision: {:.4f}\n recall: {:.4f}\n f1: {:.4f}".format
-                  (100 * eval_precision, 100 * eval_recall, 100 * eval_f1))
+        # if epoch > 2:
+        eval_precision, eval_recall, eval_f1 = evaluate(args, eval_iter, model, mode="eval")
+        print("precision: {:.4f}\n recall: {:.4f}\n f1: {:.4f}".format
+              (100 * eval_precision, 100 * eval_recall, 100 * eval_f1))
 
-            logger.info(
-                "The F1-score is {}".format(eval_f1)
-            )
-            if eval_f1 >= best_f1:
-                early_stop = 0
-                best_f1 = eval_f1
-                logger.info("the best eval f1 is {:.4f}, saving model !!".format(best_f1))
-                best_model = copy.deepcopy(model.module if hasattr(model, "module") else model)
-                torch.save(best_model.state_dict(), os.path.join(args.output_dir, "best_model.pkl"))
-            else:
-                early_stop += 1
-                if early_stop == args.early_stop:
-                    logger.info("Early stop in {} epoch!".format(epoch))
-                    break
+        logger.info(
+            "The F1-score is {}".format(eval_f1)
+        )
+        if eval_f1 >= best_f1:
+            early_stop = 0
+            best_f1 = eval_f1
+            logger.info("the best eval f1 is {:.4f}, saving model !!".format(best_f1))
+            best_model = copy.deepcopy(model.module if hasattr(model, "module") else model)
+            torch.save(best_model.state_dict(), os.path.join(args.output_dir, "best_model.pkl"))
+        else:
+            early_stop += 1
+            if early_stop == args.early_stop:
+                logger.info("Early stop in {} epoch!".format(epoch))
+                break
 
 
 if __name__ == "__main__":

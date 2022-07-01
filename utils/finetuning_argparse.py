@@ -3,7 +3,7 @@ import argparse
 def get_argparse():
     parser = argparse.ArgumentParser()
     # 数据
-    parser.add_argument("--max_len", default=512, type=int, help="最大长度")
+    parser.add_argument("--max_len", default=150, type=int, help="最大长度")
     parser.add_argument("--stride", type=int, default=100, help="The total number of n-best predictions to generate in the nbest_predictions.json output file.")
     #
     parser.add_argument("--per_gpu_train_batch_size", default=8, type=int, help="训练Batch size的大小")

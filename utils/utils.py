@@ -1,6 +1,4 @@
 """
-@Time : 2021/2/78:58
-@Auth : 周俊贤
 @File ：utils.py
 @DESCRIPTION:
 
@@ -192,12 +190,12 @@ def decoding(example_all,
                 flatten_predictions.append(layer_2[0])
         subject_id_list = []
         for cls_label in list(set(flatten_predictions)):
-            # if 1 < cls_label <= 56 and (cls_label + 55) in flatten_predictions:
 
-            # if 1 < cls_label <= 24 and (cls_label + 23) in flatten_predictions:
-            # if 1 < cls_label <= 28 and (cls_label + 27) in flatten_predictions:
+            # if 1 < cls_label <= 29 and (cls_label + 28) in flatten_predictions:
+
+
+                # """make sense"""
             if 1 < cls_label <= 22 and (cls_label + 21) in flatten_predictions:
-            # if 1 < cls_label <= 23 and (cls_label + 22) in flatten_predictions:
                 subject_id_list.append(cls_label)
         subject_id_list = list(set(subject_id_list))
 
@@ -212,11 +210,11 @@ def decoding(example_all,
                                    predictions,
                                    offset_mapping)
             objects = find_entity(text_raw,
-                                  # id_ + 55,
+                                  # id_ + 28,
+
+
+
                                   id_ + 21,
-                                  # id_ + 22,
-                                  # id_ + 27,
-                                  # id_ + 23,
                                   predictions,
                                   offset_mapping)
             for subject_ in subjects:

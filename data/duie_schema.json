@@ -187,3 +187,10 @@
   "predicate": "宫颈_边界表现",
   "subject_type": "宫颈"
 }
+{
+  "object_type": {
+    "@value": "卵巢大小"
+  },
+  "predicate": "卵巢大小",
+  "subject_type": "附件"
+}
