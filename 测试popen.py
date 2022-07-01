@@ -1,6 +1,6 @@
 import os
 
-golden_file="./data/kt_dev_196.json"
+golden_file= "data/other/kt_dev_196.json"
 predict_file="./output/eval_predictions.json"
 
 

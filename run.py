@@ -262,6 +262,5 @@ def main():
                 logger.info("Early stop in {} epoch!".format(epoch))
                 break
 
-
 if __name__ == "__main__":
     main()
