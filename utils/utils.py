@@ -1,6 +1,6 @@
 """
 @File ：utils.py
-@DESCRIPTION:
+
 
 """
 from flask import Flask, jsonify
@@ -172,16 +172,9 @@ def decoding(example_all,
         for token in logits:
             predictions.append(np.argwhere(token == 1).tolist())
 
-        # format predictions into example-style output
         formatted_instance = {}
         text_raw = example['text']
-        # complex_relation_label = [8, 10, 26, 32, 46]
-        # complex_relation_affi_label = [9, 11, 27, 28, 29, 33, 47]
 
-        # complex_relation_label = [12, 15, 18, 21]
-        # complex_relation_affi_label = [6, 7, 8, 9, 10, 13, 16, 19, 22]
-
-        # flatten predictions then retrival all valid subject id
         # 展平预测，然后检索所有有效的 头实体id
 
         flatten_predictions = []
@@ -191,10 +184,6 @@ def decoding(example_all,
         subject_id_list = []
         for cls_label in list(set(flatten_predictions)):
 
-            # if 1 < cls_label <= 29 and (cls_label + 28) in flatten_predictions:
-
-
-                # """make sense"""
             if 1 < cls_label <= 22 and (cls_label + 21) in flatten_predictions:
                 subject_id_list.append(cls_label)
         subject_id_list = list(set(subject_id_list))
@@ -228,7 +217,6 @@ def decoding(example_all,
                         "subject": subject_
 
                     })
-        "**************************************************************************************************************"
 
         formatted_instance['text'] = example['text']
         formatted_instance['spo_list'] = spo_list
@@ -245,11 +233,7 @@ def write_prediction_results(formatted_outputs, file_path):
             json_str = json.dumps(formatted_instance, ensure_ascii=False)
             f.write(json_str)
             f.write('\n')
-        # zipfile_path = file_path + '.zip'
-        # f = zipfile.ZipFile(zipfile_path, 'w', zipfile.ZIP_DEFLATED)
-        # f.write(file_path)
 
-    # return zipfile_path
 
 
 def get_precision_recall_f1(golden_file, predict_file):
