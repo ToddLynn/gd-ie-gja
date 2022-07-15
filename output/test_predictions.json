@@ -1,1 +1,137 @@
-{"text": "子宫大小在正常范围,边缘规则,子宫肌层回声均匀;宫腔线居中,子宫内膜厚度为12mm。左侧附件见25×34mm无回声,边界清晰,囊壁平滑。右侧附件未见明显异常。CDFI:未见异常血流信号。", "spo_list": [{"predicate": "子宫_大小", "object_type": {"@value": "子宫_大小"}, "subject_type": "子宫", "object": {"@value": "在正常范围"}, "subject": "子宫"}, {"predicate": "子宫_边缘", "object_type": {"@value": "子宫_边缘"}, "subject_type": "子宫", "object": {"@value": "规则"}, "subject": "子宫"}, {"predicate": "子宫内膜_厚度", "object_type": {"@value": "厚度"}, "subject_type": "子宫内膜", "object": {"@value": "12mm"}, "subject": "子宫内膜"}, {"predicate": "CDFI表现", "object_type": {"@value": "CDFI表现"}, "subject_type": "CDFI", "object": {"@value": "未见异常血流信号"}, "subject": "CDFI"}, {"predicate": "附件_侧别", "object_type": {"@value": "侧别"}, "subject_type": "附件", "object": {"@value": "左"}, "subject": "附件"}, {"predicate": "附件_侧别", "object_type": {"@value": "侧别"}, "subject_type": "附件", "object": {"@value": "右"}, "subject": "附件"}, {"predicate": "附件_回声表现", "object_type": {"@value": "附件_回声表现"}, "subject_type": "附件", "object": {"@value": "未见明显异常"}, "subject": "附件"}, {"predicate": "附件_回声大小", "object_type": {"@value": "回声大小"}, "subject_type": "附件", "object": {"@value": "25×34mm"}, "subject": "附件"}, {"predicate": "附件_回声强度", "object_type": {"@value": "回声强度"}, "subject_type": "附件", "object": {"@value": "无回声"}, "subject": "附件"}, {"predicate": "附件_边界表现", "object_type": {"@value": "边界表现"}, "subject_type": "附件", "object": {"@value": "清晰"}, "subject": "附件"}, {"predicate": "附件_囊壁表现", "object_type": {"@value": "囊壁表现"}, "subject_type": "附件", "object": {"@value": "平滑"}, "subject": "附件"}, {"predicate": "子宫肌层_边界表现", "object_type": {"@value": "边界表现"}, "subject_type": "子宫肌层", "object": {"@value": "均匀"}, "subject": "子宫肌层"}]}
+{
+  "text": "子宫大小在正常范围,边缘规则,子宫肌层回声均匀;宫腔线居中,子宫内膜厚度为12mm。左侧附件见25×34mm无回声,边界清晰,囊壁平滑。右侧附件未见明显异常。CDFI:未见异常血流信号。",
+  "spo_list": [
+    {
+      "predicate": "子宫_大小",
+      "object_type": {
+        "@value": "子宫_大小"
+      },
+      "subject_type": "子宫",
+      "object": {
+        "@value": "在正常范围"
+      },
+      "subject": "子宫"
+    },
+    {
+      "predicate": "子宫_边缘",
+      "object_type": {
+        "@value": "子宫_边缘"
+      },
+      "subject_type": "子宫",
+      "object": {
+        "@value": "规则"
+      },
+      "subject": "子宫"
+    },
+    {
+      "predicate": "子宫内膜_厚度",
+      "object_type": {
+        "@value": "厚度"
+      },
+      "subject_type": "子宫内膜",
+      "object": {
+        "@value": "12mm"
+      },
+      "subject": "子宫内膜"
+    },
+    {
+      "predicate": "CDFI表现",
+      "object_type": {
+        "@value": "CDFI表现"
+      },
+      "subject_type": "CDFI",
+      "object": {
+        "@value": "未见异常血流信号"
+      },
+      "subject": "CDFI"
+    },
+    {
+      "predicate": "附件_侧别",
+      "object_type": {
+        "@value": "侧别"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "左"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_侧别",
+      "object_type": {
+        "@value": "侧别"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "右"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_回声表现",
+      "object_type": {
+        "@value": "附件_回声表现"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "未见明显异常"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_回声大小",
+      "object_type": {
+        "@value": "回声大小"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "25×34mm"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_回声强度",
+      "object_type": {
+        "@value": "回声强度"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "无回声"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_边界表现",
+      "object_type": {
+        "@value": "边界表现"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "清晰"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "附件_囊壁表现",
+      "object_type": {
+        "@value": "囊壁表现"
+      },
+      "subject_type": "附件",
+      "object": {
+        "@value": "平滑"
+      },
+      "subject": "附件"
+    },
+    {
+      "predicate": "子宫肌层_边界表现",
+      "object_type": {
+        "@value": "边界表现"
+      },
+      "subject_type": "子宫肌层",
+      "object": {
+        "@value": "均匀"
+      },
+      "subject": "子宫肌层"
+    }
+  ]
+}
