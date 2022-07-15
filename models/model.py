@@ -22,5 +22,6 @@ class DuIE_model(nn.Module):
         return logits
 
 if __name__ == '__main__':
+    pass
     # model = DuIE_model("/data/zhoujx/prev_trained_model/rbt3", num_classes=10)
-    model = DuIE_model("/data/zhoujx/prev_trained_model/chinese_roberta_wwm_ext_pytorch_123", num_classes=10)
+    # model = DuIE_model("/data/zhoujx/prev_trained_model/chinese_roberta_wwm_ext_pytorch_123", num_classes=10)
