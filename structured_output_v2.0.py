@@ -2,118 +2,14 @@
 
 """
 宫颈癌-后结构化展示的反解析脚本：model_out(predict_spo_list)-->struct_out
-structured_output_v1.0
+structured_output_v2.0
 新增功能：
-对模型输出的dict中的spo_list,获取其中head/tail entity的准确idx; spo_list: 5元素dict——>7元素dict
+根据带index的spo，套原来的方法，实现struct_out；
+    同时保证按头实体的idx，分模块1、模块2
 """
 
 import re
 import copy
-
-
-def structured_output(output_dict):
-    B = {
-        "子宫": {
-            "子宫_大小": {},
-            "子宫_边缘": {},
-            "子宫_位置": {},
-            "子宫_形状": {},
-            "子宫_回声均匀度": {}
-        },
-        "子宫内膜": {
-            "子宫内膜_厚度": {}
-        },
-        # "CDFI": {
-        #     "CDFI表现": {}
-        # },
-        "附件": {
-            "附件_侧别": {},
-            "附件_回声表现": {},
-            "附件_回声数量": {},
-            "附件_回声强度": {},
-            "附件_回声大小": {},
-            "附件_回声均匀度": {},
-            "附件_回声类型": {},
-            "附件_边界表现": {},
-            "附件_囊壁表现": {},
-            "卵巢大小": {}
-        },
-        "子宫肌层": {
-            "子宫肌层_边界表现": {},
-            "子宫肌层_囊壁表现": {},
-            "子宫肌层_回声数量": {},
-            "子宫肌层_回声强度": {},
-            "子宫肌层_回声大小": {},
-            "子宫肌层_回声类型": {},
-            "回声均匀度": {}
-        },
-        "宫颈": {
-            "宫颈_回声数量": {},
-            "宫颈_回声强度": {},
-            "宫颈_回声大小": {},
-            "宫颈_边界表现": {}
-        }
-    }
-
-    D = copy.deepcopy(B)
-    li_spo = output_dict["spo_list"]
-    text = output_dict["text"]
-
-    li_sentence = re.split("[；。;]", text)
-    li_sentence = [i for i in li_sentence if i != '']
-    """['子宫大小在正常范围,边缘规则,子宫肌层回声均匀', '宫腔线居中,子宫内膜厚度为12mm', '左侧附件见25×34mm无回声,边界清晰,囊壁平滑', '右侧附件未见明显异常', 'CDFI:未见异常血流信号', '\n']"""
-    print(li_sentence)
-    print("*" * 100)
-    print("list_spo:{}".format(li_spo))
-
-    # 遍历 五元组列表里的每一个元组
-    # 遍历 五元组列表里的每一个元素
-    li_head = []
-    dict_head = {}
-    tmp = 0
-    # li_total_head = []
-
-    "遍历  每一段分句"
-    for sentence in li_sentence:
-        "遍历  每一条关系"
-
-        for spo in li_spo:
-            span = spo  # ["object"]["@value"]"尾实体对应的文本-字词片段"
-
-            attr = spo["predicate"]  # "尾实体对应的属性名"
-            head = spo["subject_type"]  # "尾实体对应的头实体标签名"
-
-            tmp = dict_head.get(head, 0)  # 获取 -当前字典中头实体head的个数
-
-            "如果词语在第一段句子中"
-            if span in sentence and attr != "CDFI表现":
-                # if span in sentence:
-                if tmp == 0:
-                    D[head][attr] = span
-                    li_head.append(head)
-                else:
-                    module = head + str(dict_head[head] + 1)
-                    D[module] = B[head]
-                    D[module][attr] = span
-                    li_head.append(head)
-
-        # 当  一段分句中的所有属性已经填满，把这个分句里的head添加到li_head里面。
-        # head = list(set(li_head))[0]
-        # print(list(set(li_head)))
-        try:
-            head = list(set(li_head))[0]
-            # print(head)
-            # print(list(set(li_head)))
-
-            li_head = []
-
-            dict_head[head] = tmp + 1  # 完成一段的书写，追加1个头实体head的个数记录
-        except:
-            # print("\n"+"-"*100)
-            # print("li_head = []")
-            pass
-
-    return D
 
 
 def get_entity_index(output_dict):
@@ -155,9 +51,86 @@ def get_entity_index(output_dict):
                 }
                 # print(d_new_idx)
                 li_spo_with_idx.append(spo_with_idx)
+    d_spo_with_idx ={
+        "text" :text,
+        "spo_list" :li_spo_with_idx
+    }
+    return d_spo_with_idx
 
-    return li_spo_with_idx
 
+
+def structured_output(dict_input):
+    B = {
+        "子宫": {
+            "子宫_大小": {},
+            "子宫_边缘": {},
+            "子宫_位置": {},
+            "子宫_形状": {},
+            "子宫_回声均匀度": {}
+        },
+        "子宫内膜": {
+            "子宫内膜_厚度": {}
+        },
+        "CDFI": {
+            "CDFI表现": {}
+        },
+        "附件": {
+            "附件_侧别": {},
+            "附件_回声表现": {},
+            "附件_回声数量": {},
+            "附件_回声强度": {},
+            "附件_回声大小": {},
+            "附件_回声均匀度": {},
+            "附件_回声类型": {},
+            "附件_边界表现": {},
+            "附件_囊壁表现": {},
+            "卵巢大小": {}
+        },
+        "子宫肌层": {
+            "子宫肌层_边界表现": {},
+            "子宫肌层_囊壁表现": {},
+            "子宫肌层_回声数量": {},
+            "子宫肌层_回声强度": {},
+            "子宫肌层_回声大小": {},
+            "子宫肌层_回声类型": {},
+            "回声均匀度": {}
+        },
+        "宫颈": {
+            "宫颈_回声数量": {},
+            "宫颈_回声强度": {},
+            "宫颈_回声大小": {},
+            "宫颈_边界表现": {}
+        }
+    }
+
+    D = copy.deepcopy(B)
+
+    li_spo = dict_input["spo_list"]
+
+    for spo in li_spo:
+        predicate = spo["predicate"]  # "尾实体对应的属性名"
+
+        tail = spo["object"]  # "尾实体
+        head_idx = spo["subject_idx"]  # "头实体idx
+        tail_idx = spo["object_idx"]  # "尾实体idx
+
+        head_label = spo["subject_type"]
+
+        """填写 头实体的属性，即，尾实体的值、标签、idx"""
+
+        D[head_label][predicate] = tail
+
+        # D[head_label][attr]["entity"] = tail
+        # D[head_label][attr]["label"] = tail_label
+        # D[head_label][attr]["idx"] = tail_idx
+        #
+        # D[head_label]["主体"] = {}
+        # D[head_label]["主体"]["entity"] = head
+        # D[head_label]["主体"]["label"] = head_label
+        # D[head_label]["主体"]["idx"] = head_idx
+
+        D["content"] = dict_input["text"]
+    return D
 
 if __name__ == '__main__':
     dict = {"text": "子宫大小在正常范围,边缘规则,子宫肌层回声均匀;宫腔线居中,子宫内膜厚度为12mm。左侧附件见25×34mm无回声,边界清晰,囊壁平滑。右侧附件未见明显异常。CDFI:未见异常血流信号。\n",
@@ -186,9 +159,12 @@ if __name__ == '__main__':
                          {"predicate": "子宫肌层_边界表现", "object_type": {"@value": "边界表现"}, "subject_type": "子宫肌层",
                           "object": {"@value": "均匀"}, "subject": "子宫肌层"}]}
 
-    # d = structured_output(dict)
-    li = get_entity_index(dict)
-    print(li)
+    d_spo_with_idx = get_entity_index(dict)
+    print(d_spo_with_idx)
+    print("*"*100)
+
+    d_struct_out =structured_output(d_spo_with_idx)
+    print(d_struct_out)
 # [
 #   {
 #     "subject": "子宫",

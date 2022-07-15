@@ -2,9 +2,10 @@
 
 """
 宫颈癌-后结构化展示的反解析脚本：model_out(predict_spo_list)-->struct_out
-structured_output_v1.0
+structured_output_v2.0
 新增功能：
-对模型输出的dict中的spo_list,获取其中head/tail entity的准确idx; spo_list: 5元素dict——>7元素dict
+附件:未见明显异常的条件判断:有[附件表现]，就折叠同一头实体下的其他尾实体。没有[附件表现]，就展示其他尾实体，折叠[附件表现]
+
 """
 
 import re
